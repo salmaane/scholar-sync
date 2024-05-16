@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ScholarSync
+  datasource:
+    url: jdbc:mysql://localhost:3306/scholar-sync
+    username: root
+    password: salmane
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
