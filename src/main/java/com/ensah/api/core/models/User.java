@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @Column(name="last_name")
     private String lastName;
     @Column(name="username")
-    private String username;
+    private String email;
     @Column(name="password")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -37,6 +37,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream().map(Role::toGrantedAuthority).collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override
