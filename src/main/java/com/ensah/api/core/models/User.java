@@ -28,12 +28,12 @@ public class User implements UserDetails {
     private String firstName;
     @Column(name="last_name")
     private String lastName;
-    @Column(name="username")
+    @Column(name="email")
     private String email;
     @Column(name="password")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @ManyToAny(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
     @Override
