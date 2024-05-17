@@ -1,4 +1,4 @@
-package com.ensah.api.models;
+package com.ensah.api.core.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

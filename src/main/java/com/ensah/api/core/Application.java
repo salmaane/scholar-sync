@@ -1,4 +1,4 @@
-package com.ensah.api;
+package com.ensah.api.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,6 @@
-package com.ensah.api.dao;
+package com.ensah.api.core.dao;
 
-import com.ensah.api.models.User;
+import com.ensah.api.core.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
-package com.ensah.api.services;
+package com.ensah.api.core.services;
 
-import com.ensah.api.dao.UserDAO;
+import com.ensah.api.core.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -9,3 +9,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+  jwt:
+    secret-key: 95c1eed48693553622e7aab4d7f6d63f61944c718df797b85349d0e1d75edec2
