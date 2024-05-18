@@ -1,6 +1,6 @@
 package com.ensah.api.core.models;
 
-import com.ensah.api.core.helpers.SubjectType;
+import com.ensah.api.core.models.enums.SubjectType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

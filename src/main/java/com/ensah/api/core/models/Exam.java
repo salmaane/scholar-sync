@@ -1,14 +1,13 @@
 package com.ensah.api.core.models;
 
-import com.ensah.api.core.helpers.ExamSemester;
-import com.ensah.api.core.helpers.ExamSession;
-import com.ensah.api.core.helpers.ExamType;
+import com.ensah.api.core.models.enums.ExamSemester;
+import com.ensah.api.core.models.enums.ExamSession;
+import com.ensah.api.core.models.enums.ExamType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity

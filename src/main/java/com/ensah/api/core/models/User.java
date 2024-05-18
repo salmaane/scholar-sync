@@ -1,18 +1,18 @@
 package com.ensah.api.core.models;
 
+import com.ensah.api.core.models.enums.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,12 +33,13 @@ public class User implements UserDetails {
     @Column(name="password")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(Role::toGrantedAuthority).collect(Collectors.toList());
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

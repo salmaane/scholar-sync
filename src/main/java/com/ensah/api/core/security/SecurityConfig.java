@@ -1,7 +1,7 @@
 package com.ensah.api.core.security;
 
+import com.ensah.api.core.models.enums.Role;
 import com.ensah.api.core.services.UserDetailsServiceImpl;
-import jdk.jfr.Registered;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         req -> req.requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/admin/**").hasAnyRole("ADMIN")
+                                .requestMatchers("/api/v1/admin/**").hasAuthority(Role.ADMIN.name())
                                 .anyRequest()
                                 .authenticated()
                 )

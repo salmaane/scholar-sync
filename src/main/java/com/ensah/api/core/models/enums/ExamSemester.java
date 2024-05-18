@@ -1,4 +1,4 @@
-package com.ensah.api.core.helpers;
+package com.ensah.api.core.models.enums;
 
 public enum ExamSemester {
     AUTUMN,
