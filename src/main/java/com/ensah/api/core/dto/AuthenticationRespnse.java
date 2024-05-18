@@ -1,4 +1,4 @@
-package com.ensah.api.core.web.auth;
+package com.ensah.api.core.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

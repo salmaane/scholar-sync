@@ -4,21 +4,16 @@ import com.ensah.api.core.dao.RoleDAO;
 import com.ensah.api.core.dao.UserDAO;
 import com.ensah.api.core.models.Role;
 import com.ensah.api.core.models.User;
-import com.ensah.api.core.web.auth.AuthenticationRequest;
-import com.ensah.api.core.web.auth.AuthenticationRespnse;
-import com.ensah.api.core.web.auth.RegisterRequest;
+import com.ensah.api.core.dto.AuthenticationRequest;
+import com.ensah.api.core.dto.AuthenticationRespnse;
+import com.ensah.api.core.dto.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 
 @Service
 @RequiredArgsConstructor

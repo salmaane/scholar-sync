@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,20 +19,24 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Enumerated(value = EnumType.STRING)
     private ExamSession session;
+
     @Enumerated(value = EnumType.STRING)
     private ExamType type;
-    private Date date;
-    private int durationMinutes;
-    private int realDurationMinutes;
+
     @Enumerated(value = EnumType.STRING)
     private ExamSemester semester;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Surveillance> surveillances;
+    private Date date;
+    private int durationMinutes;
+    private int realDurationMinutes;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Surveillance> surveillances;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private Subject subject;
 
 

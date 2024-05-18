@@ -1,14 +1,19 @@
-package com.ensah.api.core.web.auth;
+package com.ensah.api.core.web.controllers;
 
+import com.ensah.api.core.dto.AuthenticationRespnse;
+import com.ensah.api.core.dto.RegisterRequest;
 import com.ensah.api.core.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
-public class AuthenticationController {
+public class AdminController {
 
     private final AuthenticationService authService;
 
@@ -17,13 +22,6 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(authService.register(request));
-    }
-
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationRespnse> authenticate(
-            @RequestBody AuthenticationRequest request
-    ) {
-        return ResponseEntity.ok(authService.authenticate(request));
     }
 
 }
