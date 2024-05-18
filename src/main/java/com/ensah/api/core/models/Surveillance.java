@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,5 +23,13 @@ public class Surveillance {
     @ManyToOne(fetch = FetchType.EAGER)
     private Exam exam;
 
-    // Users (ADMIN - PROF) Relations
+    // Users Relations
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "surveillances")
+    private Set<Professor> professors;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Professor coordinator;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Administrator absController;
 }

@@ -29,5 +29,9 @@ public class Subject {
     private Set<Exam> exams;
 
     // Users (ADMIN - PROF) Relations
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Professor coordinator;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Professor professor;
 }

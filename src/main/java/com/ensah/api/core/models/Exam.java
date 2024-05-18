@@ -32,7 +32,7 @@ public class Exam {
     private int durationMinutes;
     private int realDurationMinutes;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "exam")
     private Set<Surveillance> surveillances;
 
     @ManyToOne(fetch = FetchType.EAGER)
