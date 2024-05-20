@@ -23,7 +23,6 @@ public class Surveillance {
     @ManyToOne(fetch = FetchType.EAGER)
     private Exam exam;
 
-    // Users Relations
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "surveillances")
     private Set<Professor> professors;
 

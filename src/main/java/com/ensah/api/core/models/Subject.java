@@ -1,5 +1,6 @@
 package com.ensah.api.core.models;
 
+import com.ensah.api.core.models.enums.Level;
 import com.ensah.api.core.models.enums.SubjectType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,12 @@ public class Subject {
     @Enumerated(value = EnumType.STRING)
     private SubjectType type;
 
-    @ManyToOne(fetch = FetchType.EAGER) // Or Make it Enumeration
+    @Enumerated(EnumType.STRING)
     private Level level;
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private Set<Exam> exams;
 
-    // Users (ADMIN - PROF) Relations
     @ManyToOne(fetch = FetchType.EAGER)
     private Professor coordinator;
 
