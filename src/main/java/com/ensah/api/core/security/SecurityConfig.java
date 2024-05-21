@@ -32,17 +32,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(
-                        req -> req.requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/admin/**").hasAuthority(Role.ADMIN.name())
-                                .anyRequest()
-                                .authenticated()
-                )
-                .userDetailsService(userDetailsServiceImpl)
-                .authenticationProvider(authenticationProvider())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+//                .authorizeHttpRequests(
+//                        req -> req.requestMatchers("/api/v1/auth/**").permitAll()
+//                                .requestMatchers("/api/v1/admin/**").hasAuthority(Role.ADMIN.name())
+//                                .anyRequest()
+//                                .authenticated()
+//                )
+//                .userDetailsService(userDetailsServiceImpl)
+//                .authenticationProvider(authenticationProvider())
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//                .build();
+                .authorizeHttpRequests(req -> req.anyRequest().permitAll()).build();
     }
 
     @Bean
