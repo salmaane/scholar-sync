@@ -1,6 +1,7 @@
 package com.ensah.api.core.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Sector {
     private Long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sector")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sector")
     private Set<Professor> professors;
 }
