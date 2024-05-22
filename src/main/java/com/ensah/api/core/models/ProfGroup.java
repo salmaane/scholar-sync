@@ -1,5 +1,6 @@
 package com.ensah.api.core.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,14 +12,15 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group {
+public class ProfGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
     private Set<Professor> professors;
 
 }

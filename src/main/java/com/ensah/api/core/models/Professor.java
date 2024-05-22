@@ -29,6 +29,6 @@ public class Professor extends User{
     private Sector sector;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Group group;
+    private ProfGroup group;
 
 }
