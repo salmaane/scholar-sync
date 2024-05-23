@@ -8,4 +8,5 @@ public interface GenericService<T> {
     Optional<T> findById(Long id);
     T save(T entity);
     void deleteById(Long id);
+    T update(Long id, T newEntity);
 }

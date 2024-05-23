@@ -13,6 +13,7 @@ public class SectorService extends GenericServiceImpl<Sector> {
         this.sectorDAO = dao;
     }
 
+    @Override
     public Sector update(Long id, Sector newSector) {
         Optional<Sector> sector = findById(id);
         if(sector.isPresent()) {

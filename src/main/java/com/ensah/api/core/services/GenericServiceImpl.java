@@ -1,12 +1,15 @@
 package com.ensah.api.core.services;
 
+import com.ensah.api.core.models.Class;
+import com.ensah.api.core.models.Department;
+import com.ensah.api.core.models.Sector;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class GenericServiceImpl<T> implements GenericService<T>{
+public abstract class GenericServiceImpl<T> implements GenericService<T>{
 
     private final JpaRepository<T, Long> dao;
 
@@ -30,4 +33,6 @@ public class GenericServiceImpl<T> implements GenericService<T>{
         dao.deleteById(id);
     }
 
+    @Override
+    abstract public T update(Long id, T newEntity);
 }

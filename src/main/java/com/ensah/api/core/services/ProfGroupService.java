@@ -14,6 +14,7 @@ public class ProfGroupService extends GenericServiceImpl<ProfGroup> {
         this.dao = dao;
     }
 
+    @Override
     public ProfGroup update(Long id, ProfGroup newGroup) {
         Optional<ProfGroup> group = findById(id);
         if(group.isPresent()) {
