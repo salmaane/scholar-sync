@@ -16,9 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Administrator extends User {
 
-    private int phoneNumber;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "absController")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "absController")
     private Set<Surveillance> surveillances;
 
 }

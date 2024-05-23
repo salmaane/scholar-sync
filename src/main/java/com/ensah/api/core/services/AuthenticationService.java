@@ -33,7 +33,6 @@ public class AuthenticationService {
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(request.getRole())
-                    .phoneNumber(request.getPhoneNumber())
                     .build();
             userDAO.save(user);
         } else if (request.getRole() == Role.PROF) {
@@ -43,7 +42,6 @@ public class AuthenticationService {
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(request.getRole())
-                    .cin(request.getCin())
                     .build();
             userDAO.save(user);
         } else {
