@@ -1,6 +1,6 @@
 package com.ensah.api.core.web.controllers;
 
-import com.ensah.api.core.dto.AuthenticationRespnse;
+import com.ensah.api.core.dto.AuthenticationResponse;
 import com.ensah.api.core.dto.RegisterRequest;
 import com.ensah.api.core.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class AdminController {
     private final AuthenticationService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationRespnse> register(
+    public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(authService.register(request));

@@ -1,6 +1,5 @@
 package com.ensah.api.core.services;
 
-import com.ensah.api.core.models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -18,8 +17,15 @@ import java.util.function.Function;
 public class JwtService {
 
     private final String SECRET_KEY;
-    public JwtService(@Value("${spring.jwt.secret-key}") String SECRET_KEY) {
+    private final long jwtExpiration;
+    private final long refreshExpiration;
+    public JwtService(
+            @Value("${application.security.jwt.secret-key}") String SECRET_KEY,
+            @Value("${application.security.jwt.expiration}") long jwtExpiration,
+            @Value("${application.security.jwt.refresh-token.expiration}") long refreshExpiration) {
         this.SECRET_KEY = SECRET_KEY;
+        this.jwtExpiration = jwtExpiration;
+        this.refreshExpiration = refreshExpiration;
     }
 
     public boolean isValid(String token, UserDetails user) {
@@ -58,12 +64,20 @@ public class JwtService {
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails user) {
+        return buildToken(extraClaims, user, jwtExpiration);
+    }
+
+    public String generateRefreshToken(UserDetails user) {
+        return buildToken(new HashMap<>(), user, refreshExpiration);
+    }
+
+    private String buildToken(Map<String, Object> extraClaims, UserDetails user, long expiration) {
         return Jwts
                 .builder()
                 .claims(extraClaims)
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 24*60*60*1000))
+                .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSigningKey())
                 .compact();
     }

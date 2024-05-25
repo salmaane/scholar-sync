@@ -9,5 +9,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
-  jwt:
-    secret-key: 95c1eed48693553622e7aab4d7f6d63f61944c718df797b85349d0e1d75edec2
+application:
+  security:
+    jwt:
+      secret-key: 95c1eed48693553622e7aab4d7f6d63f61944c718df797b85349d0e1d75edec2
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days

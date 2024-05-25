@@ -29,8 +29,9 @@ public class Application {
 					.password("admin")
 					.role(Role.ADMIN)
 					.build();
-
-			System.out.println("ADMIN TOKEN: " + authService.register(admin).getToken());
+			var authResponse = authService.register(admin);
+			System.out.println("ADMIN ACCESS TOKEN: " + authResponse.getAccessToken());
+			System.out.println("ADMIN REFRESH TOKEN: " + authResponse.getRefreshToken());
 		};
 	}
 }
