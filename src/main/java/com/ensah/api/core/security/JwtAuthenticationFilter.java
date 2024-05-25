@@ -1,5 +1,6 @@
 package com.ensah.api.core.security;
 
+import com.ensah.api.core.dao.TokenDAO;
 import com.ensah.api.core.services.JwtService;
 import com.ensah.api.core.services.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
@@ -23,6 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsServiceImpl userDetailsService;
+    private final TokenDAO tokenDAO;
 
     @Override
     protected void doFilterInternal(
@@ -44,8 +46,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if(username != null &&  SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-            if(jwtService.isValid(token, userDetails)) {
+            Boolean isTokenValid = tokenDAO.findByToken(token)
+                    .map(t -> !t.isExpired() && !t.isRevoked())
+                    .orElse(false);
+            if(jwtService.isValid(token, userDetails) && isTokenValid) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
                 );
