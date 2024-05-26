@@ -11,6 +11,7 @@ spring:
       ddl-auto: create-drop
 application:
   security:
+    allowed-origin: http://localhost:5173
     jwt:
       secret-key: 95c1eed48693553622e7aab4d7f6d63f61944c718df797b85349d0e1d75edec2
       expiration: 86400000 # a day
