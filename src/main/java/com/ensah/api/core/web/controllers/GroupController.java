@@ -1,5 +1,6 @@
 package com.ensah.api.core.web.controllers;
 
+import com.ensah.api.core.dto.UserDTO;
 import com.ensah.api.core.models.ProfGroup;
 import com.ensah.api.core.models.Professor;
 import com.ensah.api.core.services.GenericService;
@@ -25,21 +26,21 @@ public class GroupController extends GenericController<ProfGroup> {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/prof")
-    public ResponseEntity<List<Professor>> getAllProfessors() {
-        List<Professor> professors = professorService.getAllProfessors();
+    public ResponseEntity<List<UserDTO>> getAllProfessors() {
+        List<UserDTO> professors = professorService.getAllProfessors();
         return ResponseEntity.ok(professors);
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/prof/department/{departmentId}")
-    public ResponseEntity<List<Professor>> getProfessorsByDepartment(@PathVariable Long departmentId) {
-        List<Professor> professors = professorService.getProfessorsByDepartment(departmentId);
+    public ResponseEntity<List<UserDTO>> getProfessorsByDepartment(@PathVariable Long departmentId) {
+        List<UserDTO> professors = professorService.getProfessorsByDepartment(departmentId);
         return ResponseEntity.ok(professors);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/prof/sector/{sectorId}")
-    public ResponseEntity<List<Professor>> getProfessorsBySector(@PathVariable Long sectorId) {
-        List<Professor> professors = professorService.getProfessorsBySector(sectorId);
+    public ResponseEntity<List<UserDTO>> getProfessorsBySector(@PathVariable Long sectorId) {
+        List<UserDTO> professors = professorService.getProfessorsBySector(sectorId);
         return ResponseEntity.ok(professors);
     }
 
