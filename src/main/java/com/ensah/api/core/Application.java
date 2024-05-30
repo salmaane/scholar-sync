@@ -18,20 +18,20 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-//	@Bean
-//	@Transactional
-//	public CommandLineRunner initialize(AuthenticationService authService) {
-//		return args -> {
-//			var admin = RegisterRequest.builder()
-//					.firstName("admin")
-//					.lastName("admin")
-//					.email("admin@gmail.com")
-//					.password("admin123")
-//					.role(Role.ADMIN)
-//					.build();
-//			var authResponse = authService.register(admin);
-//			System.out.println("ADMIN ACCESS TOKEN: " + authResponse.getAccessToken());
-//			System.out.println("ADMIN REFRESH TOKEN: " + authResponse.getRefreshToken());
-//		};
-//	}
+	@Bean
+	@Transactional
+	public CommandLineRunner initialize(AuthenticationService authService) {
+		return args -> {
+			var admin = RegisterRequest.builder()
+					.firstName("admin")
+					.lastName("admin")
+					.email("admin@gmail.com")
+					.password("admin")
+					.role(Role.ADMIN)
+					.build();
+			var authResponse = authService.register(admin);
+			System.out.println("ADMIN ACCESS TOKEN: " + authResponse.getAccessToken());
+			System.out.println("ADMIN REFRESH TOKEN: " + authResponse.getRefreshToken());
+		};
+	}
 }
