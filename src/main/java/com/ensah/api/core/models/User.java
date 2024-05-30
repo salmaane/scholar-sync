@@ -39,7 +39,7 @@ public class User extends Auditable implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Token> tokens;
 
     @Override
