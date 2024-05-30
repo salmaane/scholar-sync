@@ -1,11 +1,10 @@
 package com.ensah.api.core.services;
 
+import com.ensah.api.core.dao.DepartmentDAO;
+import com.ensah.api.core.dao.SectorDAO;
 import com.ensah.api.core.dao.TokenDAO;
 import com.ensah.api.core.dao.UserDAO;
-import com.ensah.api.core.models.Administrator;
-import com.ensah.api.core.models.Professor;
-import com.ensah.api.core.models.Token;
-import com.ensah.api.core.models.User;
+import com.ensah.api.core.models.*;
 import com.ensah.api.core.dto.AuthenticationRequest;
 import com.ensah.api.core.dto.AuthenticationResponse;
 import com.ensah.api.core.dto.RegisterRequest;
@@ -34,6 +33,9 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final DepartmentDAO departmentDAO;
+    private final SectorDAO sectorDAO;
+
 
     public AuthenticationResponse register(RegisterRequest request) {
 
@@ -49,12 +51,17 @@ public class AuthenticationService {
                     .build();
             savedUser = userDAO.save(user);
         } else if (request.getRole() == Role.PROF) {
+            Department department = departmentDAO.findById(request.getDepartmentId()).orElse(null);
+            Sector sector = sectorDAO.findById(request.getDepartmentId()).orElse(null);
+
             user = Professor.builder()
                     .firstName(request.getFirstName())
                     .lastName(request.getLastName())
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(request.getRole())
+                    .department(department)
+                    .sector(sector)
                     .build();
             savedUser = userDAO.save(user);
         } else {
