@@ -49,10 +49,10 @@ public class ProfGroupService extends GenericServiceImpl<ProfGroup> {
     public void deleteById(Long id) {
          var group = dao.findById(id);
          if(group.isPresent()) {
-             for(int i=0; i < group.get().getProfessors().size(); i++) {
-                 group.get().removeProfessor(group.get().getProfessors().get(i));
+             for(Professor prof : group.get().getProfessors()) {
+                 prof.setGroup(null);
              }
-            dao.delete(group.get());
+             dao.delete(group.get());
          }
     }
 

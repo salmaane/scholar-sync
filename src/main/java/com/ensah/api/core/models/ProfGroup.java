@@ -30,9 +30,4 @@ public class ProfGroup {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
     private List<Professor> professors;
 
-    public void removeProfessor(Professor professor) {
-        this.professors.remove(professor);
-        professor.setGroup(null);
-    }
-
 }
