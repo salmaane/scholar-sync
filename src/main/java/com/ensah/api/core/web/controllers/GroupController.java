@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/group")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class GroupController extends GenericController<ProfGroup> {
     private final ProfessorService professorService;
     private final ProfGroupService profGroupService;
@@ -23,20 +24,17 @@ public class GroupController extends GenericController<ProfGroup> {
         this.profGroupService = service;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/prof")
     public ResponseEntity<List<UserDTO>> getAllProfessors() {
         List<UserDTO> professors = professorService.getAllProfessors();
         return ResponseEntity.ok(professors);
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/prof/department/{departmentId}")
     public ResponseEntity<List<UserDTO>> getProfessorsByDepartment(@PathVariable Long departmentId) {
         List<UserDTO> professors = professorService.getProfessorsByDepartment(departmentId);
         return ResponseEntity.ok(professors);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/prof/sector/{sectorId}")
     public ResponseEntity<List<UserDTO>> getProfessorsBySector(@PathVariable Long sectorId) {
         List<UserDTO> professors = professorService.getProfessorsBySector(sectorId);
