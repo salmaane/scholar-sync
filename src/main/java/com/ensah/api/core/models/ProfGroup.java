@@ -4,13 +4,17 @@ import com.ensah.api.core.models.enums.GroupCreationCriteria;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfGroup {
@@ -24,6 +28,11 @@ public class ProfGroup {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
-    private Set<Professor> professors;
+    private List<Professor> professors;
+
+    public void removeProfessor(Professor professor) {
+        this.professors.remove(professor);
+        professor.setGroup(null);
+    }
 
 }

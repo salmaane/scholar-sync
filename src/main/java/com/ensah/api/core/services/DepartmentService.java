@@ -18,8 +18,8 @@ public class DepartmentService extends GenericServiceImpl<Department> {
 
     @Override
     public Department update(Long id, Department newDepartment) {
-        Optional<Department> sector = findById(id);
-        if(sector.isPresent()) {
+        Optional<Department> department = findById(id);
+        if(department.isPresent()) {
             newDepartment.setId(id);
             return dao.save(newDepartment);
         }
