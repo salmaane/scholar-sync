@@ -2,12 +2,14 @@ package com.ensah.api.core.models;
 
 import com.ensah.api.core.models.enums.ExamSemester;
 import com.ensah.api.core.models.enums.ExamSession;
+import com.ensah.api.core.models.enums.ExamStartHour;
 import com.ensah.api.core.models.enums.ExamType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -28,9 +30,15 @@ public class Exam {
     @Enumerated(value = EnumType.STRING)
     private ExamSemester semester;
 
-    private Date date;
-    private int durationMinutes;
-    private int realDurationMinutes;
+    private LocalDate date;
+
+    private String academicYear;
+
+    @Enumerated(EnumType.STRING)
+    private ExamStartHour startHour;
+
+    private Integer durationMinutes;
+    private Integer realDurationMinutes;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "exam")
     private Set<Surveillance> surveillances;

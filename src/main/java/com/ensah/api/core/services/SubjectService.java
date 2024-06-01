@@ -5,6 +5,7 @@ import com.ensah.api.core.dao.SubjectDAO;
 import com.ensah.api.core.dto.SubjectDTO;
 import com.ensah.api.core.models.Professor;
 import com.ensah.api.core.models.Subject;
+import com.ensah.api.core.models.enums.Level;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +43,10 @@ public class SubjectService extends GenericServiceImpl<Subject> {
         coordinator.ifPresent(subject::setCoordinator);
 
         return dao.save(subject);
+    }
+
+    public List<Subject> findBySectorIdAndLevel(Long sectorId, Level level) {
+        return dao.findBySectorIdAndLevel(sectorId, level);
     }
 
 }
