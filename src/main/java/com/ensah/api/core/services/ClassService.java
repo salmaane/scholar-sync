@@ -1,12 +1,16 @@
 package com.ensah.api.core.services;
 
 import com.ensah.api.core.dao.ClassDAO;
+import com.ensah.api.core.dto.ExamDTO;
 import com.ensah.api.core.models.Class;
-import com.ensah.api.core.models.Department;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@PreAuthorize("hasAuthority('ADMIN')")
 public class ClassService extends GenericServiceImpl<Class> {
 
     private final ClassDAO classDAO;
@@ -26,4 +30,7 @@ public class ClassService extends GenericServiceImpl<Class> {
         return null;
     }
 
+    public List<Class> availableClasses(ExamDTO examDTO) {
+        return classDAO.getAvailableClasses(examDTO.getDate(), examDTO.getStartHour());
+    }
 }
