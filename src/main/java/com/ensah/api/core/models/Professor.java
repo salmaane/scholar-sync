@@ -2,9 +2,14 @@ package com.ensah.api.core.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -16,11 +21,11 @@ public class Professor extends User{
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Surveillance> surveillances;
+    private List<Surveillance> surveillances = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "coordinator")
-    private Set<Surveillance> managed_surveillances;
+    private List<Surveillance> managed_surveillances = new ArrayList<>();
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

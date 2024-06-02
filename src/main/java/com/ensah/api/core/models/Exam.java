@@ -4,6 +4,7 @@ import com.ensah.api.core.models.enums.ExamSemester;
 import com.ensah.api.core.models.enums.ExamSession;
 import com.ensah.api.core.models.enums.ExamStartHour;
 import com.ensah.api.core.models.enums.ExamType;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -40,10 +42,11 @@ public class Exam {
     private ExamStartHour startHour;
 
     private Integer durationMinutes;
+    @Nullable
     private Integer realDurationMinutes;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "exam")
-    private Set<Surveillance> surveillances;
+    private List<Surveillance> surveillances = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Subject subject;

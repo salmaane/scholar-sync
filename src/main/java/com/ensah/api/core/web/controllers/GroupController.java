@@ -26,18 +26,18 @@ public class GroupController extends GenericController<ProfGroup> {
 
     @GetMapping("/prof")
     public ResponseEntity<List<UserDTO>> getAllProfessors() {
-        List<UserDTO> professors = professorService.getAllProfessors();
+        List<UserDTO> professors = professorService.getAll();
         return ResponseEntity.ok(professors);
     }
     @GetMapping("/prof/department/{departmentId}")
     public ResponseEntity<List<UserDTO>> getProfessorsByDepartment(@PathVariable Long departmentId) {
-        List<UserDTO> professors = professorService.getProfessorsByDepartment(departmentId);
+        List<UserDTO> professors = professorService.getByDepartment(departmentId);
         return ResponseEntity.ok(professors);
     }
 
     @GetMapping("/prof/sector/{sectorId}")
     public ResponseEntity<List<UserDTO>> getProfessorsBySector(@PathVariable Long sectorId) {
-        List<UserDTO> professors = professorService.getProfessorsBySector(sectorId);
+        List<UserDTO> professors = professorService.getBySector(sectorId);
         return ResponseEntity.ok(professors);
     }
 

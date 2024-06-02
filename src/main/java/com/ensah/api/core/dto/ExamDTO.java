@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -27,6 +28,18 @@ public class ExamDTO {
     private ExamStartHour startHour;
     private Integer durationMinutes;
     private Integer realDurationMinutes;
+    private Long groupId;
+    private Long subjectId;
+    private List<ProfsPerClass> classes;
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ProfsPerClass {
+        private Long classId;
+        private Long number;
+    }
 
     public static ExamDTO toDTO(Exam exam) {
         return ExamDTO.builder()
@@ -42,7 +55,7 @@ public class ExamDTO {
                 .build();
     }
 
-    public static Exam toProfGroup(ExamDTO examDTO) {
+    public static Exam toExam(ExamDTO examDTO) {
         return  Exam.builder()
                 .id(examDTO.id)
                 .session(examDTO.getSession())

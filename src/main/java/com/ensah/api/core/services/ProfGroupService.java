@@ -2,7 +2,6 @@ package com.ensah.api.core.services;
 
 import com.ensah.api.core.dao.GroupDAO;
 import com.ensah.api.core.dao.ProfessorDAO;
-import com.ensah.api.core.dao.UserDAO;
 import com.ensah.api.core.dto.GroupDTO;
 import com.ensah.api.core.models.ProfGroup;
 import com.ensah.api.core.models.Professor;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProfGroupService extends GenericServiceImpl<ProfGroup> {
@@ -55,5 +53,6 @@ public class ProfGroupService extends GenericServiceImpl<ProfGroup> {
              dao.delete(group.get());
          }
     }
+
 
 }

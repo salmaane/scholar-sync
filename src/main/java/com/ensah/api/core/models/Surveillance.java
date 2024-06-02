@@ -2,13 +2,15 @@ package com.ensah.api.core.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Surveillance {
@@ -24,7 +26,7 @@ public class Surveillance {
     private Exam exam;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "surveillances")
-    private Set<Professor> professors;
+    private List<Professor> professors;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Professor coordinator;

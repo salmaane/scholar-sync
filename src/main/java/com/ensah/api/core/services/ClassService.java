@@ -33,4 +33,8 @@ public class ClassService extends GenericServiceImpl<Class> {
     public List<Class> availableClasses(ExamDTO examDTO) {
         return classDAO.getAvailableClasses(examDTO.getDate(), examDTO.getStartHour());
     }
+
+    public List<Class> findAllById(List<Long> ids) {
+        return classDAO.findAllById(ids);
+    }
 }
