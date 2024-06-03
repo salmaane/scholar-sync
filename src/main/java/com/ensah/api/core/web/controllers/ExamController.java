@@ -25,8 +25,13 @@ public class ExamController {
         }
     }
 
-    @GetMapping()
-    public List<ExamDTO> findAll() {
-        return service.findAll();
+    @PostMapping("/byYear")
+    public List<ExamDTO> findAll(@RequestBody ExamDTO examDTO) {
+        return service.findAll(examDTO.getAcademicYear());
+    }
+
+    @GetMapping("years")
+    public String[] getAcademicYears() {
+        return service.getAcademicYears();
     }
 }

@@ -97,8 +97,12 @@ public class ExamService {
         }
     }
 
-    public List<ExamDTO> findAll() {
-        List<Exam> exams = dao.findAll();
+    public List<ExamDTO> findAll(String academicYear) {
+        List<Exam> exams = dao.findAllByAcademicYear(academicYear);
         return exams.stream().map(ExamDTO::toDTO).toList();
+    }
+
+    public String[] getAcademicYears() {
+        return dao.getAcademicYears();
     }
 }
