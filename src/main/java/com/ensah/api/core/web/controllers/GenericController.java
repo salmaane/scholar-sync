@@ -1,11 +1,11 @@
 package com.ensah.api.core.web.controllers;
 
-import com.ensah.api.core.models.Department;
 import com.ensah.api.core.services.GenericService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +26,10 @@ public abstract class GenericController<T> {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("count")
+    public ResponseEntity<Long> rowsNumber(){
+        return ResponseEntity.ok(service.rowsNumber());
+    }
     @PostMapping
     public ResponseEntity<T> create(@RequestBody T entity) {
         return new ResponseEntity<>(service.save(entity), HttpStatus.CREATED);

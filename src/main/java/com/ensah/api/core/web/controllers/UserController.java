@@ -21,6 +21,12 @@ public class UserController {
     private final UserService userService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("count")
+    public ResponseEntity<Long> rowsNumber(){
+        return ResponseEntity.ok(userService.rowsNumber());
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<UserDTO> findAll() {
         List<User> users = userService.findAll();
