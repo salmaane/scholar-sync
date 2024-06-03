@@ -19,4 +19,8 @@ public class AdminService {
     ) {
         return adminDAO.findAvailableForSurveillance(date, startHour, surveillanceLimit);
     }
+
+    public Long rowsNumber(){
+        return adminDAO.count();
+    }
 }

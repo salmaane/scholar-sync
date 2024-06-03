@@ -16,6 +16,10 @@ public class ProfessorService {
 
     private final ProfessorDAO professorDAO;
 
+    public Long rowsNumber(){
+        return professorDAO.count();
+    }
+
     public List<UserDTO> getAll() {
         List<Professor> professors = professorDAO.findAll();
         return professors.stream().map(UserDTO::toDTO).toList();

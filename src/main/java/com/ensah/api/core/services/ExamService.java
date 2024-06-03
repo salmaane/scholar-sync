@@ -23,6 +23,10 @@ public class ExamService {
     private final InformationService informationService;
     private final AdminService adminService;
 
+    public Long rowsNumber(){
+        return dao.count();
+    }
+
     public ExamDTO create(ExamDTO examDTO) {
         // Get current Semester infos
         InformationDTO information = informationService.getInformation();
