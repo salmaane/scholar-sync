@@ -31,4 +31,17 @@ public interface ProfessorDAO extends JpaRepository<Professor, Long> {
             Long groupId, LocalDate date, ExamStartHour startHour, Integer surveillanceLimit
     );
 
+    @Query("""
+        SELECT p FROM Professor p WHERE p NOT IN (
+            SELECT s.professors FROM Surveillance s
+            WHERE s.exam.date = :date and s.exam.startHour = :startHour
+        ) AND (
+            SELECT COUNT(s) FROM Surveillance s
+            WHERE s.exam.date = :date AND p MEMBER OF s.professors
+        ) < :surveillanceLimit
+    """)
+    List<Professor> findRandomAvailableForSurveillance(
+            LocalDate date, ExamStartHour startHour, Integer surveillanceLimit
+    );
+
 }

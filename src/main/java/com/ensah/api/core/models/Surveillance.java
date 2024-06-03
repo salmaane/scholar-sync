@@ -1,5 +1,6 @@
 package com.ensah.api.core.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,8 @@ public class Surveillance {
     @ManyToOne(fetch = FetchType.EAGER)
     private Class aClass;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     private Exam exam;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "surveillances")

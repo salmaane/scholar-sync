@@ -5,6 +5,8 @@ import com.ensah.api.core.services.ExamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/v1/exam")
@@ -27,4 +29,13 @@ public class ExamController {
         return ResponseEntity.ok(service.rowsNumber());
     }
 
+    @PostMapping("/byYear")
+    public List<ExamDTO> findAll(@RequestBody ExamDTO examDTO) {
+        return service.findAll(examDTO.getAcademicYear());
+    }
+
+    @GetMapping("years")
+    public String[] getAcademicYears() {
+        return service.getAcademicYears();
+    }
 }

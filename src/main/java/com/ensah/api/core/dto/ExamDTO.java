@@ -1,10 +1,13 @@
 package com.ensah.api.core.dto;
 
 import com.ensah.api.core.models.Exam;
+import com.ensah.api.core.models.Subject;
+import com.ensah.api.core.models.Surveillance;
 import com.ensah.api.core.models.enums.ExamSemester;
 import com.ensah.api.core.models.enums.ExamSession;
 import com.ensah.api.core.models.enums.ExamStartHour;
 import com.ensah.api.core.models.enums.ExamType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,9 +31,15 @@ public class ExamDTO {
     private ExamStartHour startHour;
     private Integer durationMinutes;
     private Integer realDurationMinutes;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long groupId;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long subjectId;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ProfsPerClass> classes;
+    private List<Surveillance> surveillances;
+    private Subject subject;
+
 
     @Data
     @Builder
@@ -52,6 +61,8 @@ public class ExamDTO {
                 .startHour(exam.getStartHour())
                 .durationMinutes(exam.getDurationMinutes())
                 .realDurationMinutes(exam.getRealDurationMinutes())
+                .surveillances(exam.getSurveillances())
+                .subject(exam.getSubject())
                 .build();
     }
 

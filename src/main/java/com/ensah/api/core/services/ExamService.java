@@ -72,7 +72,7 @@ public class ExamService {
                         .findFirst().orElseThrow();
 
                 List<Professor> professorList = new ArrayList<>();
-                for(int i = 0; profsPerClass.getNumber() < i; i++) {
+                for(int i = 0; i < profsPerClass.getNumber(); i++) {
                     professorList.add(availableProfessors.removeFirst());
                 }
 
@@ -101,4 +101,12 @@ public class ExamService {
         }
     }
 
+    public List<ExamDTO> findAll(String academicYear) {
+        List<Exam> exams = dao.findAllByAcademicYear(academicYear);
+        return exams.stream().map(ExamDTO::toDTO).toList();
+    }
+
+    public String[] getAcademicYears() {
+        return dao.getAcademicYears();
+    }
 }

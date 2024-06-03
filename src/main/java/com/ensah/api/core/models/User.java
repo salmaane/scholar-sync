@@ -44,9 +44,27 @@ public class User extends Auditable implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Token> tokens;
 
+    @JsonIgnore
+    @Transient
+    private boolean accountNonExpired = true;
+    @JsonIgnore
+    @Transient
+    private boolean accountNonLocked = true;
+    @JsonIgnore
+    @Transient
+    private boolean credentialsNonExpired = true;
+    @JsonIgnore
+    @Transient
+    private boolean enabled = true;
+
+    @JsonIgnore
+    @Transient
+    private Collection<? extends GrantedAuthority> authorities;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        authorities =  List.of(new SimpleGrantedAuthority(role.name()));
+        return authorities;
     }
     @Override
     public String getUsername() {
@@ -54,18 +72,18 @@ public class User extends Auditable implements UserDetails {
     }
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return accountNonExpired;
     }
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return credentialsNonExpired;
     }
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

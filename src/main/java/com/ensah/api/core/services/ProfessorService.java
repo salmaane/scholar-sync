@@ -45,6 +45,9 @@ public class ProfessorService {
     public List<Professor> findAvailableForSurveillance(
             Long groupId, LocalDate date, ExamStartHour startHour, Integer surveillanceLimit
     ){
+        if(groupId == 0) {
+            return professorDAO.findRandomAvailableForSurveillance(date, startHour, surveillanceLimit);
+        }
         return professorDAO.findAvailableForSurveillance(groupId, date, startHour, surveillanceLimit);
     }
 }
