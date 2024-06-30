@@ -1,0 +1,31 @@
+services:
+  mariadb:
+    container_name: mariadb-container
+    image: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: salmane
+      MARIADB_DATABASE: scholar-sync
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - scholarsync-network
+
+  scholarsync:
+    container_name: scholarsync-container
+    image: scholarsync
+    ports:
+      - "8080:8080"
+    networks:
+      - scholarsync-network
+    depends_on:
+      - mariadb
+
+networks:
+  scholarsync-network:
+    name: scholarsync-network
+    driver: bridge
+
+volumes:
+  mariadb_data:
